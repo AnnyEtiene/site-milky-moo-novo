@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pag1.css">
+    <style>
+        /* Fonte utilizada: Sofia */
+        body {
+            font-family: 'Sofia', sans-serif; /* Aplicando a fonte Sofia */
+            margin: 0;
+            padding: 0;
+            background-color: #6a1b9a; /* Fundo roxo */
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header img {
+            display: block;
+            margin: 0 auto;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav ul.menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul.menu li {
+            margin: 0 10px;
+        }
+        nav ul.menu li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+            background-color: #6a1b9a;
+            border-radius: 5px;
+        }
+        nav ul.menu li a:hover {
+            background-color: #4a148c;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            color: #6a1b9a; /* Cor do título combinando com o fundo */
+            text-align: center;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 10px;
+            color: #e2ccf0; /* Cor dos labels */
+        }
+        .container input {
+            width: calc(100% - 22px); /* Ajusta a largura do input com base no padding */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Inclui padding e border na largura total */
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0066eb; /* Cor do botão */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .container button:hover {
+            background-color: #0044cc; /* Cor do botão quando passa o mouse */
+        }
+        .error, .success {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .error {
+            color: #d32f2f; /* Cor de erro */
+        }
+        .success {
+            color: #388e3c; /* Cor de sucesso */
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #6a1b9a;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+        <header>
+            <img src="https://milkymoo.com.br/wp-content/uploads/2021/12/vaquinha@contact.png" alt="Logo MilkyMoo"
+              style="width:200px;height:200px;" />
+            <img src="https://milkymoo.com.br/wp-content/uploads/2021/12/melhor.png"
+              alt="Frase: O melhor milk shake do mundo!" style="width: 800px;height:200px;" />
+          </header>
+        
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sabores.html">Sabores</a></li>
+            <li><a href="pag2.html">Galeria</a></li>
+            <li><a href="contatos.html" rel="prev" >Contato</a></li>
+            <li><a href="alcolico.html">Alcólicos</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Login</h1>
+        <div id="message" class="error"></div>
+        <form id="loginForm">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirmar Senha:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="age" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+    
+    <footer>
+        <p>MilkyMoo<br>
+            <a href="mailto:milkymoo@example.com">&copy; Milky Moo todos os direitos reservados</a>
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            
+            // Obtém os valores dos campos
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const age = parseInt(document.getElementById('age').value, 10);
+            const messageDiv = document.getElementById('message');
+
+            // Verifica a idade
+            if (age < 18) {
+                messageDiv.textContent = 'Você deve ter pelo menos 18 anos para acessar.';
+                messageDiv.className = 'error';
+                return;
+            }
+
+            // Verifica se as senhas coincidem
+            if (password !== confirmPassword) {
+                messageDiv.textContent = 'As senhas não coincidem.';
+                messageDiv.className = 'error';
+                return;
+            }
+
+            // Se a idade e as senhas estiverem corretas, redireciona para a nova página
+            messageDiv.textContent = '';
+            window.location.href = 'sucesso.html'; // Redireciona para a nova página
+        });
+    </script>
+</body>
+</html>
